@@ -31,8 +31,8 @@ public class DriveTrain extends Subsystem {
     // leftWheelEncoder, leftMotor);
     // PIDController rightWheelControl = new PIDController(0.1, 0, 0,
     // rightWheelEncoder, rightMotor);
-    SpeedControllerGroup leftmotor = RobotMap.driveTrainLeftMotor;
-    SpeedControllerGroup rightmotor = RobotMap.driveTrainRightMotor;
+    // SpeedControllerGroup leftmotor = RobotMap.driveTrainLeftMotor;
+    // SpeedControllerGroup rightmotor = RobotMap.driveTrainRightMotor;
     // controls speed of chassis and the Value of the Decimal is a percentage ex.
     // 0.5 = 50%
     double driveTrainSpeed = 1.0;
@@ -59,25 +59,19 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveTrainFoward(double speed) {
-        Timer.delay(0.01);
-        // leftWheelControl.setSetpoint(2);
-        // rightWheelControl.setSetpoint(2);
         robotDrive.arcadeDrive(speed, 0);
     }
 
     public void driveTrainBackward(double speed) {
-        Timer.delay(0.01);
         robotDrive.arcadeDrive(-speed, 0);
     }
 
     public void turn(double rotateValue) {
-        Timer.delay(0.01);
         robotDrive.setSafetyEnabled(true);
         robotDrive.arcadeDrive(0.1, -rotateValue, true);
     }
 
     public void takeJoystickInputs(Joystick xBoxController) {
-        Timer.delay(0.01);
         robotDrive.setSafetyEnabled(true);
 
         /*
@@ -91,7 +85,6 @@ public class DriveTrain extends Subsystem {
         robotDrive.arcadeDrive(xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_Y) * driveTrainSpeed,
                 -xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_X) * driveTrainSpeed,
                 // -xBoxController.getRawAxis(Robot.oi.RIGHT_AXIS_X) * driveTrainSpeed,
-
                 true);
     }
 
