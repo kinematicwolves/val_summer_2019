@@ -16,7 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Arm extends TalonPIDSubsystem {
 
-    public static final double Kp_default = 0.0005;
+    // Adjust Kp between 0.0001 and 0.0005, based on the arm. Greater than 0.0005
+    // seems to do wacky things.
+    public static final double Kp_default = 0.0001;
     public static final double Ki_default = 0.0;
     public static final double Kd_default = 0.0;
     public static final double Kf_default = 0.1;
@@ -31,7 +33,12 @@ public class Arm extends TalonPIDSubsystem {
     public static final double MAXIMUM_ANGLE = 90.0;
     public static final double ANGLE_TOLERANCE = 2.0;
     public static final double STARTINGANGLE = 90.0;
-    private static final double degreesPerEncoderCount = (360.0 / 4096) * (12.0 / 60);
+
+    // Adjust gearBoxScaleFactor based on the gear box ratio. 9:1 gear box output
+    // would probably be (1.0 / 9.0).
+    // This number will likely be less than 1.
+    private static final double gearBoxScaleFactor = (12.0 / 60);
+    private static final double degreesPerEncoderCount = (360.0 / 4096) * gearBoxScaleFactor;
 
     private ShuffleboardTab pid_tab;
     private NetworkTableEntry nt_Kp;
