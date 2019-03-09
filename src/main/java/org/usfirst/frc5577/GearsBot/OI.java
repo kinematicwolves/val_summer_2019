@@ -121,11 +121,6 @@ public class OI {
 		lBumperManipulator.whenPressed(new ShiftWrist());
 		lTriggerManipulator.whenPressed(new ShiftHatchPanel());
 
-		rBumperManipulator.whenPressed(new MoveArmTo(5));
-		rTriggerManipulator.whenPressed(new MoveArmTo(85));
-
-		r3Manipulator.whenPressed(new ManualArmControl());
-
 		xButton.whileHeld(new IntakeBall(0.8));
 
 		bButton.whileHeld(new ShootBall(0.8));
