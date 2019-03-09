@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import org.usfirst.frc5577.GearsBot.RobotMap;
 import org.usfirst.frc5577.GearsBot.Utility;
+import org.usfirst.frc5577.GearsBot.commands.ManualArmControl;
 import org.usfirst.frc5577.GearsBot.subsystems.pid.TalonPIDSubsystem;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -26,7 +27,7 @@ public class Arm extends TalonPIDSubsystem {
     private double Kf;
 
     // Zero is with the arm straight horizontal
-    public static final double MINIMUM_ANGLE = -21.0;
+    public static final double MINIMUM_ANGLE = 0.0;
     public static final double MAXIMUM_ANGLE = 90.0;
     public static final double ANGLE_TOLERANCE = 2.0;
     public static final double STARTINGANGLE = 90.0;
@@ -62,14 +63,6 @@ public class Arm extends TalonPIDSubsystem {
         nt_Kf = pid_tab.add("kF", Kf_default).getEntry();
     }
 
-    public void liftArm(double speed) {
-        RobotMap.redTalonSRX.set(speed);
-    }
-
-    public void lowerArm(double speed) {
-        RobotMap.redTalonSRX.set(-speed);
-    }
-
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Arm Angle", getAngle());
@@ -97,7 +90,7 @@ public class Arm extends TalonPIDSubsystem {
     }
 
     public double getAngle() {
-        int quadraturePosition = RobotMap.redTalonSRX.getSensorCollection().getQuadraturePosition();
+        int quadraturePosition = talon.getSensorCollection().getQuadraturePosition();
         return STARTINGANGLE - toDegrees(quadraturePosition);
     }
 
@@ -126,7 +119,7 @@ public class Arm extends TalonPIDSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new ManualArmControl());
     }
 
 }

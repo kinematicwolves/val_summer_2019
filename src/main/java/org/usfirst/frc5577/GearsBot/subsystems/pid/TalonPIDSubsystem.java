@@ -18,14 +18,7 @@ public abstract class TalonPIDSubsystem extends Subsystem {
     protected PIDSourceTalon talon;
 
     public void enablePID() {
-        if (!controller.isEnabled()) {
-            controller.stop();
-            controller.enable();
-        }
-
-        if (controller.isEnabled()) {
-            controller.disable();
-        }
+        controller.enable();
     }
 
     public boolean isPIDenabled() {
@@ -33,11 +26,7 @@ public abstract class TalonPIDSubsystem extends Subsystem {
     }
 
     public void stop() {
-        if (controller.isEnabled()) {
-            controller.stop();
-        } else {
-            talon.stopMotor();
-        }
+        controller.stop();
     }
 
     public boolean onTarget() {
