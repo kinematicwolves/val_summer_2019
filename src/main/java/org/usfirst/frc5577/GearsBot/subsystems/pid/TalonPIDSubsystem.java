@@ -18,6 +18,7 @@ public abstract class TalonPIDSubsystem extends Subsystem {
     protected PIDSourceTalon talon;
 
     public void enablePID() {
+        controller.stop();
         controller.enable();
     }
 

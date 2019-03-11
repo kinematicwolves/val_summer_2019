@@ -101,7 +101,7 @@ public class Arm extends TalonPIDSubsystem {
         return STARTINGANGLE - toDegrees(quadraturePosition);
     }
 
-    public void moveShoulderSetpoint(double speed) {
+    public void moveSetpoint(double speed) {
         double ang = getSetpointDegrees();
         ang += speed;
         setAngle(ang);

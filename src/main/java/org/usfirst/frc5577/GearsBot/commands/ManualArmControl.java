@@ -22,7 +22,7 @@ public class ManualArmControl extends Command {
 
     double speed = Robot.oi.manipulatorController.getRawAxis(Robot.oi.RIGHT_AXIS_Y);
 
-    Robot.arm.moveShoulderSetpoint(speed);
+    Robot.arm.moveSetpoint(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
