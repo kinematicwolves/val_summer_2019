@@ -34,7 +34,7 @@ public class Elevator extends Subsystem {
 		// sb.append(RobotMap.clearTalonSRX.getSelectedSensorVelocity(0));
 
 		// double targetSpeed = speed; // 6000 RPM target
-		RobotMap.clearTalonSRX.set(-speed);
+		RobotMap.elevatorTalonSRX.set(-speed);
 
 		// sb.append("/terr");
 		// sb.append(RobotMap.clearTalonSRX.getClosedLoopError(0));
@@ -46,7 +46,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void stop() {
-		RobotMap.clearTalonSRX.set(ControlMode.PercentOutput, 0);
+		RobotMap.elevatorTalonSRX.set(ControlMode.PercentOutput, 0);
 	}
 
 	@Override

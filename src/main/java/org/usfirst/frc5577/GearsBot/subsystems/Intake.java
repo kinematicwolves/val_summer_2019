@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem {
 	public Intake() {
-		addChild(RobotMap.blackTalonSRX);
+		addChild(RobotMap.intakeTalonSRX);
 	}
 
 	public void intakeBall(double speed) {
-		RobotMap.blackTalonSRX.set(-speed);
+		RobotMap.intakeTalonSRX.set(-speed);
 	}
 
 	public void shootOutBall(double speed) {
-		RobotMap.blackTalonSRX.set(speed);
+		RobotMap.intakeTalonSRX.set(speed);
 	}
 
 	@Override

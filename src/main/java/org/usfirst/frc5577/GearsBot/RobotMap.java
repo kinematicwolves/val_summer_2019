@@ -28,9 +28,9 @@ public class RobotMap {
 	public static SpeedControllerGroup driveTrainLeftMotor;
 	public static DifferentialDrive driveTrainRobotDrive;
 
-	public static WPI_TalonSRX blackTalonSRX; // intake
-	public static PIDSourceTalon redTalonSRX; // arm
-	public static WPI_TalonSRX clearTalonSRX; // elevator
+	public static WPI_TalonSRX intakeTalonSRX; // intake
+	public static WPI_TalonSRX elevatorTalonSRX; // elevator
+	public static PIDSourceTalon armTalonSRX; // arm
 	public static WPI_VictorSPX victorSPX4;
 	public static WPI_VictorSPX victorSPX5;
 	public static WPI_VictorSPX victorSPX6;
@@ -46,9 +46,9 @@ public class RobotMap {
 
 	static void init() {
 
-		blackTalonSRX = new WPI_TalonSRX(1); // intake
-		redTalonSRX = new PIDSourceTalon(2); // arm
-		clearTalonSRX = new WPI_TalonSRX(3); // elevator
+		intakeTalonSRX = new WPI_TalonSRX(1); // intake
+		elevatorTalonSRX = new WPI_TalonSRX(2); // elevator
+		armTalonSRX = new PIDSourceTalon(3); // arm
 		victorSPX4 = new WPI_VictorSPX(4);
 		victorSPX5 = new WPI_VictorSPX(5);
 		victorSPX6 = new WPI_VictorSPX(6);

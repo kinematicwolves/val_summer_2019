@@ -30,14 +30,14 @@ public class Arm extends TalonPIDSubsystem {
 
     // Zero is with the arm straight horizontal
     public static final double MINIMUM_ANGLE = 0.0;
-    public static final double MAXIMUM_ANGLE = 90.0;
+    public static final double MAXIMUM_ANGLE = 120.0;
     public static final double ANGLE_TOLERANCE = 2.0;
-    public static final double STARTINGANGLE = 90.0;
+    public static final double STARTINGANGLE = 0.0;
 
     // Adjust gearBoxScaleFactor based on the gear box ratio. 9:1 gear box output
     // would probably be (1.0 / 9.0).
     // This number will likely be less than 1.
-    private static final double gearBoxScaleFactor = (12.0 / 60);
+    private static final double gearBoxScaleFactor = (40.0 / 60);
     private static final double degreesPerEncoderCount = (360.0 / 4096) * gearBoxScaleFactor;
 
     private ShuffleboardTab pid_tab;
@@ -55,10 +55,10 @@ public class Arm extends TalonPIDSubsystem {
     }
 
     public Arm() {
-        talon = RobotMap.redTalonSRX;
+        talon = RobotMap.armTalonSRX;
         talon.setName("ArmTalon");
         talon.setNeutralMode(NeutralMode.Brake);
-        talon.setInverted(true);
+        talon.setInverted(false);
 
         controller = new VerticalArmPIDController(Kp_default, Ki_default, Kd_default, Kf_default, talon, talon);
         controller.setAbsoluteTolerance(ANGLE_TOLERANCE); // TODO set tolerance in counts
