@@ -34,10 +34,13 @@ public class Arm extends TalonPIDSubsystem {
     public static final double ANGLE_TOLERANCE = 2.0;
     public static final double STARTINGANGLE = 180.0;
 
-    // Adjust gearBoxScaleFactor based on the gear box ratio. 9:1 gear box output
-    // would probably be (1.0 / 9.0).
-    // This number will likely be less than 1.
-    private static final double gearBoxScaleFactor = (40.0 / 60);
+    /**
+     * The sprocketScaleFactor accounts for how much the output of the gearbox must
+     * spin to power the rotation of arm itself. If the gear at the output of the
+     * gearbox has 15 teeth, and the gear connected via chain has 23 teeth, then the
+     * scale factor is 15/23.
+     */
+    private static final double gearBoxScaleFactor = (15.0 / 23.0);
     private static final double degreesPerEncoderCount = (360.0 / 4096) * gearBoxScaleFactor;
 
     private ShuffleboardTab pid_tab;
