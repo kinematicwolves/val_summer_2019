@@ -32,6 +32,8 @@ public class Arm extends TalonPIDSubsystem {
     public static final double MINIMUM_ANGLE = 85.0;
     public static final double MAXIMUM_ANGLE = 210.0;
     public static final double ANGLE_TOLERANCE = 2.0;
+    // Start testing straight out at 180°, to see if arm holds and can move well
+    // Then adjust to starting at 90°, then 85°.
     public static final double STARTINGANGLE = 180.0;
 
     /**
