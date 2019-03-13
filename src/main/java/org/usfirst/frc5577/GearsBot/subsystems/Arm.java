@@ -21,6 +21,7 @@ public class Arm extends TalonPIDSubsystem {
     public static final double Kp_default = 0.0001;
     public static final double Ki_default = 0.0;
     public static final double Kd_default = 0.0;
+    // Kf may need to be adjusted if the arm does not hold steady state at 180°
     public static final double Kf_default = 0.1;
 
     private double Kp;
