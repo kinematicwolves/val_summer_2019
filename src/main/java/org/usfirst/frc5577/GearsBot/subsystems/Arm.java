@@ -29,10 +29,10 @@ public class Arm extends TalonPIDSubsystem {
     private double Kf;
 
     // Zero is with the arm straight horizontal
-    public static final double MINIMUM_ANGLE = 0.0;
-    public static final double MAXIMUM_ANGLE = 120.0;
+    public static final double MINIMUM_ANGLE = 85.0;
+    public static final double MAXIMUM_ANGLE = 210.0;
     public static final double ANGLE_TOLERANCE = 2.0;
-    public static final double STARTINGANGLE = 0.0;
+    public static final double STARTINGANGLE = 180.0;
 
     // Adjust gearBoxScaleFactor based on the gear box ratio. 9:1 gear box output
     // would probably be (1.0 / 9.0).
@@ -119,7 +119,7 @@ public class Arm extends TalonPIDSubsystem {
 
         @Override
         protected double calculateFeedForward() {
-            return getF() * Math.cos(Math.toRadians(getAngle()));
+            return getF() * -Math.cos(Math.toRadians(getAngle()));
         }
 
     }
