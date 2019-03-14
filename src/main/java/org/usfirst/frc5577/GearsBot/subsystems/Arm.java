@@ -79,11 +79,11 @@ public class Arm extends TalonPIDSubsystem {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Arm angle", getAngle());
+        SmartDashboard.putNumber("Arm setpoint degrees", getSetpointDegrees());
         SmartDashboard.putNumber("Arm angle (actual) counts", talon.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putNumber("Arm angle setpoint counts", getSetpointCounts());
         SmartDashboard.putBoolean("Arm PID on", controller.isEnabled());
         SmartDashboard.putNumber("Arm error", controller.getError());
-        SmartDashboard.putNumber("Arm setpoint degrees", getSetpointDegrees());
-        SmartDashboard.putNumber("Arm setpoint counts", getSetpointCounts());
         SmartDashboard.putNumber("Arm motor out", talon.get());
 
         Kp = nt_Kp.getDouble(0);
