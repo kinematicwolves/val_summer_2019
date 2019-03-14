@@ -12,7 +12,7 @@ public class ElevatorUp extends Command {
 	private double distanceInInches = 12;
 
 	public ElevatorUp() {
-		requires(Robot.lift);
+		requires(Robot.elevator);
 	}
 
 	// public ElevatorUp(double distanceInFeet) {
@@ -32,7 +32,7 @@ public class ElevatorUp extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.lift.moveLift(speed);
+		Robot.elevator.moveLift(speed);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class ElevatorUp extends Command {
 
 	@Override
 	protected void interrupted() {
-		Robot.lift.moveLift(0);
+		Robot.elevator.moveLift(0);
 	}
 
 }

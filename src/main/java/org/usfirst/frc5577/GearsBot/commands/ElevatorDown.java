@@ -9,13 +9,13 @@ public class ElevatorDown extends Command {
 	private double speed = 0;
 
 	public ElevatorDown(double speed) {
-		requires(Robot.lift);
+		requires(Robot.elevator);
 		this.speed = speed;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.lift.moveLift(-speed);
+		Robot.elevator.moveLift(-speed);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ElevatorDown extends Command {
 
 	@Override
 	protected void interrupted() {
-		Robot.lift.moveLift(0);
+		Robot.elevator.moveLift(0);
 	}
 
 }

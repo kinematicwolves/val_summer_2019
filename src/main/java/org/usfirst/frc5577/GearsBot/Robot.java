@@ -44,9 +44,8 @@ public class Robot extends TimedRobot {
     public static Intake intake;
     public static Arm arm;
     public static Pneumatics pneumatics;
-    public static Elevator lift;
+    public static Elevator elevator;
     public static ADIS16448_IMU imu = new ADIS16448_IMU();
-    DigitalInput limitSwitch;
 
     // Camera and Vision
     public static CameraServer cameraServer1;
@@ -65,8 +64,7 @@ public class Robot extends TimedRobot {
         intake = new Intake();
         arm = new Arm();
         pneumatics = new Pneumatics();
-        lift = new Elevator();
-        limitSwitch = new DigitalInput(9);
+        elevator = new Elevator();
 
         // OI must be constructed after subsystems. If the OI creates Commands
         // (which it very likely will), subsystems are not guaranteed to be
@@ -139,9 +137,6 @@ public class Robot extends TimedRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        if (!limitSwitch.get()) {
-            System.out.println("You pressed the switch!");
-        }
     }
 
     public void operatorControl() {

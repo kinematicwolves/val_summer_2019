@@ -29,7 +29,7 @@ public class RobotMap {
 	public static DifferentialDrive driveTrainRobotDrive;
 
 	public static WPI_TalonSRX intakeTalonSRX; // intake
-	public static WPI_TalonSRX elevatorTalonSRX; // elevator
+	public static PIDSourceTalon elevatorTalonSRX; // elevator
 	public static PIDSourceTalon armTalonSRX; // arm
 	public static WPI_VictorSPX victorSPX4;
 	public static WPI_VictorSPX victorSPX5;
@@ -38,16 +38,13 @@ public class RobotMap {
 
 	public static Compressor compressor;
 	public static DoubleSolenoid driveTrainSwitch;
-	// public static Encoder leftWheelEncoder;
-	// public static Encoder rightWheelEncoder;
-	public static Encoder elevatorEncoder;
 	public static DoubleSolenoid wristSwitch;
 	public static DoubleSolenoid hatchPanelSwitch;
 
 	static void init() {
 
 		intakeTalonSRX = new WPI_TalonSRX(1); // intake
-		elevatorTalonSRX = new WPI_TalonSRX(2); // elevator
+		elevatorTalonSRX = new PIDSourceTalon(2); // elevator
 		armTalonSRX = new PIDSourceTalon(3); // arm
 		victorSPX4 = new WPI_VictorSPX(4);
 		victorSPX5 = new WPI_VictorSPX(5);
@@ -71,10 +68,5 @@ public class RobotMap {
 		wristSwitch.set(DoubleSolenoid.Value.kOff);
 		hatchPanelSwitch = new DoubleSolenoid(4, 5);
 		hatchPanelSwitch.set(DoubleSolenoid.Value.kOff);
-
-		elevatorEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
-		elevatorEncoder.setDistancePerPulse(.147262 / 2);
-		elevatorEncoder.setSamplesToAverage(10);
-		elevatorEncoder.reset();
 	}
 }
