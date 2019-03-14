@@ -98,7 +98,7 @@ public class Arm extends TalonPIDSubsystem {
 
     public void setAngle(double angle) {
         angle = Utility.clamp(angle, MINIMUM_ANGLE, MAXIMUM_ANGLE);
-        double counts = toCounts(angle - STARTING_ANGLE);
+        double counts = toCounts(angle - STARTING_ANGLE); // Measures the difference from the starting angle
         controller.setSetpoint(counts);
     }
 
