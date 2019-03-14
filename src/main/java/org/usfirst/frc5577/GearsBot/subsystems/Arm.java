@@ -35,7 +35,7 @@ public class Arm extends TalonPIDSubsystem {
     public static final double ANGLE_TOLERANCE = 2.0;
     // Start testing straight out at 180°, to see if arm holds and can move well
     // Then adjust to starting at 90°, then 85°.
-    public static final double STARTINGANGLE = 180.0;
+    public static final double STARTING_ANGLE = 180.0;
 
     /**
      * The sprocketScaleFactor accounts for how much the output of the gearbox must
@@ -43,8 +43,8 @@ public class Arm extends TalonPIDSubsystem {
      * gearbox has 15 teeth, and the gear connected via chain has 23 teeth, then the
      * scale factor is 15/23.
      */
-    private static final double gearBoxScaleFactor = (15.0 / 23.0);
-    private static final double degreesPerEncoderCount = (360.0 / 4096) * gearBoxScaleFactor;
+    private static final double sprocketScaleFactor = (15.0 / 23.0);
+    private static final double degreesPerEncoderCount = (360.0 / 4096) * sprocketScaleFactor;
 
     private ShuffleboardTab pid_tab;
     private NetworkTableEntry nt_Kp;
@@ -98,13 +98,13 @@ public class Arm extends TalonPIDSubsystem {
 
     public void setAngle(double angle) {
         angle = Utility.clamp(angle, MINIMUM_ANGLE, MAXIMUM_ANGLE);
-        double counts = toCounts(STARTINGANGLE - angle);
+        double counts = toCounts(angle - STARTING_ANGLE);
         controller.setSetpoint(counts);
     }
 
     public double getAngle() {
         int quadraturePosition = talon.getSensorCollection().getQuadraturePosition();
-        return STARTINGANGLE - toDegrees(quadraturePosition);
+        return STARTING_ANGLE + toDegrees(quadraturePosition);
     }
 
     public void moveSetpoint(double speed) {
@@ -115,7 +115,7 @@ public class Arm extends TalonPIDSubsystem {
 
     public double getSetpointDegrees() {
         double counts = controller.getSetpoint();
-        return STARTINGANGLE - toDegrees(counts);
+        return STARTING_ANGLE + toDegrees(counts);
     }
 
     public class VerticalArmPIDController extends TalonPIDController {
