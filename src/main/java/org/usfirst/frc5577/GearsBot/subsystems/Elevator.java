@@ -79,11 +79,11 @@ public class Elevator extends TalonPIDSubsystem {
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("Elevator height", getHeight());
-		SmartDashboard.putNumber("Elevator (actual) counts", talon.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Elevator height setpoint", getSetpointHeight());
+		SmartDashboard.putNumber("Elevator height (actual) counts", talon.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Elevator height setpoint counts", getSetpointCounts());
 		SmartDashboard.putBoolean("Elevator PID On", controller.isEnabled());
 		SmartDashboard.putNumber("Elevator error", controller.getError());
-		SmartDashboard.putNumber("Elevator height setpoint", getSetpointHeight());
-		SmartDashboard.putNumber("Elevator height setpoint counts", getSetpointCounts());
 		SmartDashboard.putNumber("Elevator motor out", talon.get());
 
 		Kp = nt_Kp_elevator.getDouble(0);
