@@ -79,10 +79,11 @@ public class Elevator extends TalonPIDSubsystem {
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("Elevator height", getHeight());
-		SmartDashboard.putNumber("Elevator counts", talon.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Elevator (actual) counts", talon.getSensorCollection().getQuadraturePosition());
 		SmartDashboard.putBoolean("Elevator PID On", controller.isEnabled());
 		SmartDashboard.putNumber("Elevator error", controller.getError());
 		SmartDashboard.putNumber("Elevator height setpoint", getSetpointHeight());
+		SmartDashboard.putNumber("Elevator height setpoint counts", getSetpointCounts());
 		SmartDashboard.putNumber("Elevator motor out", talon.get());
 
 		Kp = nt_Kp_elevator.getDouble(0);
@@ -116,6 +117,10 @@ public class Elevator extends TalonPIDSubsystem {
 	public double getSetpointHeight() {
 		double counts = controller.getSetpoint();
 		return STARTING_HEIGHT + toInches(counts);
+	}
+
+	public double getSetpointCounts() {
+		return controller.getSetpoint();
 	}
 
 	public void moveLift(double speed) {

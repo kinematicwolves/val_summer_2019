@@ -78,11 +78,12 @@ public class Arm extends TalonPIDSubsystem {
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Arm Angle", getAngle());
-        SmartDashboard.putNumber("Arm Angle counts", talon.getSensorCollection().getQuadraturePosition());
-        SmartDashboard.putBoolean("Arm PID On", controller.isEnabled());
+        SmartDashboard.putNumber("Arm angle", getAngle());
+        SmartDashboard.putNumber("Arm angle (actual) counts", talon.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putBoolean("Arm PID on", controller.isEnabled());
         SmartDashboard.putNumber("Arm error", controller.getError());
-        SmartDashboard.putNumber("Arm Setpoint", getSetpointDegrees());
+        SmartDashboard.putNumber("Arm setpoint degrees", getSetpointDegrees());
+        SmartDashboard.putNumber("Arm setpoint counts", getSetpointCounts());
         SmartDashboard.putNumber("Arm motor out", talon.get());
 
         Kp = nt_Kp_arm.getDouble(0);
@@ -116,6 +117,10 @@ public class Arm extends TalonPIDSubsystem {
     public double getSetpointDegrees() {
         double counts = controller.getSetpoint();
         return STARTING_ANGLE + toDegrees(counts);
+    }
+
+    public double getSetpointCounts() {
+        return controller.getSetpoint();
     }
 
     public class VerticalArmPIDController extends TalonPIDController {
