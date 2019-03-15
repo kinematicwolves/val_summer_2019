@@ -20,7 +20,7 @@ public class ManualArmControl extends Command {
   @Override
   protected void execute() {
 
-    double speed = Robot.oi.manipulatorController.getRawAxis(Robot.oi.LEFT_AXIS_Y);
+    double speed = -Robot.oi.manipulatorController.getRawAxis(Robot.oi.RIGHT_AXIS_Y);
 
     Robot.arm.moveSetpoint(speed);
   }
