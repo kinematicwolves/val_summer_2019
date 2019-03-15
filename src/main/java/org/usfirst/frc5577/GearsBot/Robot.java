@@ -100,17 +100,17 @@ public class Robot extends TimedRobot {
      * Autonomous options to the SmartDashboard.
      */
     public void autonomousInit() {
-        autoChooser = new SendableChooser<CommandGroup>();
-        autoChooser.setDefaultOption("Default program", new AutonDriveStraight());
-        autoChooser.addOption("Left", new AutonDriveFromLeft());
-        autoChooser.addOption("Center", new AutonDriveFromCenter());
-        autoChooser.addOption("Right", new AutonDriveFromRight());
-        SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+        // autoChooser = new SendableChooser<CommandGroup>();
+        // autoChooser.setDefaultOption("Default program", new AutonDriveStraight());
+        // autoChooser.addOption("Left", new AutonDriveFromLeft());
+        // autoChooser.addOption("Center", new AutonDriveFromCenter());
+        // autoChooser.addOption("Right", new AutonDriveFromRight());
+        // SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 
-        autonomousCommand = (Command) autoChooser.getSelected();
-        if (autonomousCommand != null) {
-            autonomousCommand.start();
-        }
+        // autonomousCommand = (Command) autoChooser.getSelected();
+        // if (autonomousCommand != null) {
+        // autonomousCommand.start();
+        // }
     }
 
     /**
