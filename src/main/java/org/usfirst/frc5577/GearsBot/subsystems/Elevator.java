@@ -30,7 +30,7 @@ public class Elevator extends TalonPIDSubsystem {
 
 	// Height units in inches
 	public static final double MINIMUM_HEIGHT = 0.0;
-	public static final double MAXIMUM_HEIGHT = 40.0; // Start with 40 inches, increase from there
+	public static final double MAXIMUM_HEIGHT = 37.0; // Start with 40 inches, increase from there
 	public static final double HEIGHT_TOLERANCE = 2.0;
 	public static final double STARTING_HEIGHT = 0.0;
 
@@ -44,7 +44,8 @@ public class Elevator extends TalonPIDSubsystem {
 	private static final double spoolDiameter = 1.25; // Inches!
 	private static final double spoolCircumference = Math.PI * spoolDiameter; // Inches in 1 revolution
 	private static final double countsPerRevolution = 4096;
-	private static final double inchesPerEncoderCount = (spoolCircumference / countsPerRevolution) * sprocketScaleFactor;
+	private static final double inchesPerEncoderCount = (spoolCircumference / countsPerRevolution)
+			* sprocketScaleFactor;
 
 	private ShuffleboardTab pid_tab_elevator;
 	private NetworkTableEntry nt_Kp_elevator;
@@ -80,7 +81,8 @@ public class Elevator extends TalonPIDSubsystem {
 	public void periodic() {
 		SmartDashboard.putNumber("Elevator height", getHeight());
 		SmartDashboard.putNumber("Elevator height setpoint", getSetpointHeight());
-		SmartDashboard.putNumber("Elevator height (actual) counts", talon.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Elevator height (actual) counts",
+				talon.getSensorCollection().getQuadraturePosition());
 		SmartDashboard.putNumber("Elevator height setpoint counts", getSetpointCounts());
 		SmartDashboard.putBoolean("Elevator PID On", controller.isEnabled());
 		SmartDashboard.putNumber("Elevator error", controller.getError());

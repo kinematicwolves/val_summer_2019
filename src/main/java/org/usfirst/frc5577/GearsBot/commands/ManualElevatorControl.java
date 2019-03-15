@@ -20,13 +20,7 @@ public class ManualElevatorControl extends Command {
   @Override
   protected void execute() {
 
-    double speed = 0.0;
-
-    if (Robot.oi.dPadUp.get()) {
-      speed = 1.0;
-    } else if (Robot.oi.dPadDown.get()) {
-      speed = -1.0;
-    }
+    double speed = -Robot.oi.manipulatorController.getRawAxis(Robot.oi.LEFT_AXIS_Y);
 
     Robot.elevator.moveSetpoint(speed);
   }
