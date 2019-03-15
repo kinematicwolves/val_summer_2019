@@ -124,11 +124,17 @@ public class OI {
 		dPadDown = new DPadButton(manipulatorController, Direction.DOWN);
 		buttons.add(dPadDown);
 
+		// dPadUp.whileHeld(new ElevatorUp(0.85));
+		// dPadDown.whileHeld(new ElevatorDown(0.60));
+
 		lBumperManipulator.whenPressed(new ShiftWrist());
 		lTriggerManipulator.whenPressed(new ShiftHatchPanel());
 
-		xButtonManipulator.whileHeld(new IntakeBall(1.0));
-		bButtonManipulator.whileHeld(new ShootBall(1.0));
+		// xButton.whileHeld(new IntakeBall(1.0));
+		rBumperManipulator.whileHeld(new IntakeBall(1.0));
+
+		// bButton.whileHeld(new ShootBall(1.0));
+		rTriggerManipulator.whenPressed(new ShootBall(1.0));
 	}
 
 	public void close() {

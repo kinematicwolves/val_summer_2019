@@ -18,11 +18,11 @@ public class Arm extends TalonPIDSubsystem {
 
     // Adjust Kp between 0.0001 and 0.0005, based on the arm. Greater than 0.0005
     // seems to do wacky things.
-    public static final double Kp_default = 0.0001;
+    public static final double Kp_default = 0.0005;
     public static final double Ki_default = 0.0;
     public static final double Kd_default = 0.0;
     // Kf may need to be adjusted if the arm does not hold steady state at 180°
-    public static final double Kf_default = 0.1;
+    public static final double Kf_default = 0.2;
 
     private double Kp;
     private double Ki;
@@ -30,12 +30,12 @@ public class Arm extends TalonPIDSubsystem {
     private double Kf;
 
     // Zero is with the arm straight horizontal
-    public static final double MINIMUM_ANGLE = 85.0;
-    public static final double MAXIMUM_ANGLE = 210.0;
+    public static final double MINIMUM_ANGLE = -30.0;
+    public static final double MAXIMUM_ANGLE = 96.0;
     public static final double ANGLE_TOLERANCE = 2.0;
-    // Start testing straight out at 180°, to see if arm holds and can move well
-    // Then adjust to starting at 90°, then 85°.
-    public static final double STARTING_ANGLE = 180.0;
+    // Start testing straight out at 0°, to see if arm holds and can move well
+    // Then adjust to starting at 90°, then 95°.
+    public static final double STARTING_ANGLE = 95.0;
 
     /**
      * The sprocketScaleFactor accounts for how much the output of the gearbox must
@@ -82,6 +82,7 @@ public class Arm extends TalonPIDSubsystem {
         SmartDashboard.putNumber("Arm setpoint degrees", getSetpointDegrees());
         SmartDashboard.putNumber("Arm angle (actual) counts", talon.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("Arm angle setpoint counts", getSetpointCounts());
+        SmartDashboard.putNumber("Feed forward value", getFeedForward());
         SmartDashboard.putBoolean("Arm PID on", controller.isEnabled());
         SmartDashboard.putNumber("Arm error", controller.getError());
         SmartDashboard.putNumber("Arm motor out", talon.get());
@@ -113,7 +114,7 @@ public class Arm extends TalonPIDSubsystem {
         int quadraturePosition = talon.getSensorCollection().getQuadraturePosition();
         return STARTING_ANGLE + toDegrees(quadraturePosition);
     }
-
+    
     public double getSetpointDegrees() {
         double counts = controller.getSetpoint();
         return STARTING_ANGLE + toDegrees(counts);
@@ -123,6 +124,10 @@ public class Arm extends TalonPIDSubsystem {
         return controller.getSetpoint();
     }
 
+    public double getFeedForward() {
+        return 0.1 * Math.cos(Math.toRadians(getAngle()));
+    }
+
     public class VerticalArmPIDController extends TalonPIDController {
         VerticalArmPIDController(double p, double i, double d, double f, PIDSource src, PIDOutput out) {
             super(p, i, d, f, src, out);
@@ -130,7 +135,7 @@ public class Arm extends TalonPIDSubsystem {
 
         @Override
         protected double calculateFeedForward() {
-            return getF() * -Math.cos(Math.toRadians(getAngle()));
+            return getF() * Math.cos(Math.toRadians(getAngle()));
         }
 
     }
