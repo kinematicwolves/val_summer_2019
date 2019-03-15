@@ -22,6 +22,8 @@ public class ManualArmControl extends Command {
 
     double speed = -Robot.oi.manipulatorController.getRawAxis(Robot.oi.RIGHT_AXIS_Y);
 
+    speed = Math.signum(speed) * Math.pow(speed, 2);
+    
     Robot.arm.moveSetpoint(speed);
   }
 
