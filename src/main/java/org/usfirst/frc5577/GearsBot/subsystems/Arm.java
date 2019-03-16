@@ -18,10 +18,10 @@ public class Arm extends TalonPIDSubsystem {
 
     // Adjust Kp between 0.0001 and 0.0005, based on the arm. Greater than 0.0005
     // seems to do wacky things.
-    public static final double Kp_default = 0.0002;
+    public static final double Kp_default = 0.00022;
     public static final double Ki_default = 0.0;
     public static final double Kd_default = 0.0;
-    // Kf may need to be adjusted if the arm does not hold steady state at 180°
+    // Kf may need to be adjusted if the arm does not hold steady state at 0°
     public static final double Kf_default = 0.2;
 
     private double Kp;
@@ -31,10 +31,8 @@ public class Arm extends TalonPIDSubsystem {
 
     // Zero is with the arm straight horizontal
     public static final double MINIMUM_ANGLE = -30.0;
-    public static final double MAXIMUM_ANGLE = 91.0;
+    public static final double MAXIMUM_ANGLE = 90.0;
     public static final double ANGLE_TOLERANCE = 2.0;
-    // Start testing straight out at 0°, to see if arm holds and can move well
-    // Then adjust to starting at 90°, then 95°.
     public static final double STARTING_ANGLE = 90.0;
 
     /**
@@ -64,7 +62,7 @@ public class Arm extends TalonPIDSubsystem {
         talon = RobotMap.armTalonSRX;
         talon.setName("ArmTalon");
         talon.setNeutralMode(NeutralMode.Brake);
-        talon.setInverted(false);
+        talon.setInverted(true);
 
         controller = new VerticalArmPIDController(Kp_default, Ki_default, Kd_default, Kf_default, talon, talon);
         controller.setAbsoluteTolerance(ANGLE_TOLERANCE); // TODO set tolerance in counts
