@@ -22,6 +22,10 @@ public class ManualElevatorControl extends Command {
 
     double speed = -Robot.oi.manipulatorController.getRawAxis(Robot.oi.LEFT_AXIS_Y);
 
+    if (speed > 0.75) {
+      speed = 0.75;
+    }
+
     speed = Math.signum(speed) * Math.pow(speed, 2);
     Robot.elevator.moveSetpoint(speed);
   }

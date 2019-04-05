@@ -66,10 +66,31 @@ public class DriveTrain extends Subsystem {
          */
         // robotDrive.arcadeDrive(xBoxCont);
 
-        robotDrive.arcadeDrive(xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_Y) * driveTrainSpeed,
-                -xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_X) * driveTrainSpeed,
-                // -xBoxController.getRawAxis(Robot.oi.RIGHT_AXIS_X) * driveTrainSpeed,
-                true);
+        double speedValue = xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_Y);
+        double rotateValue = -xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_X);
+
+        robotDrive.arcadeDrive(speedValue * driveTrainSpeed, rotateValue * driveTrainSpeed, true);
+
+        // "Smoother Step" idea below
+        // robotDrive.arcadeDrive(Math.signum(speedValue) * smootherstep(0, 1,
+        // Math.abs(speedValue)) * driveTrainSpeed,
+        // Math.signum(rotateValue) * smootherstep(0, 1, Math.abs(rotateValue)) *
+        // driveTrainSpeed, false);
+    }
+
+    double smootherstep(double edge0, double edge1, double x) {
+        // Scale, and clamp x to 0..1 range
+        x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+        // Evaluate polynomial
+        return x * x * x * (x * (x * 6 - 15) + 10);
+    }
+
+    double clamp(double x, double lowerlimit, double upperlimit) {
+        if (x < lowerlimit)
+            x = lowerlimit;
+        if (x > upperlimit)
+            x = upperlimit;
+        return x;
     }
 
     public void stop() {

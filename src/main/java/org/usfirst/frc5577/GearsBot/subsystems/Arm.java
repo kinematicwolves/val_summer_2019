@@ -18,11 +18,11 @@ public class Arm extends TalonPIDSubsystem {
 
     // Adjust Kp between 0.0001 and 0.0005, based on the arm. Greater than 0.0005
     // seems to do wacky things.
-    public static final double Kp_default = 0.00022;
+    public static final double Kp_default = 0.0008;
     public static final double Ki_default = 0.0;
     public static final double Kd_default = 0.0;
     // Kf may need to be adjusted if the arm does not hold steady state at 0°
-    public static final double Kf_default = 0.2;
+    public static final double Kf_default = 0.28;
 
     private double Kp;
     private double Ki;
@@ -41,7 +41,7 @@ public class Arm extends TalonPIDSubsystem {
      * gearbox has 15 teeth, and the gear connected via chain has 23 teeth, then the
      * scale factor is 15/23.
      */
-    private static final double sprocketScaleFactor = (15.0 / 23.0);
+    private static final double sprocketScaleFactor = (16.0 / 34.0);
     private static final double degreesPerEncoderCount = (360.0 / 4096) * sprocketScaleFactor;
 
     private ShuffleboardTab pid_tab_arm;
@@ -62,7 +62,7 @@ public class Arm extends TalonPIDSubsystem {
         talon = RobotMap.armTalonSRX;
         talon.setName("ArmTalon");
         talon.setNeutralMode(NeutralMode.Brake);
-        talon.setInverted(true);
+        talon.setInverted(false);
 
         controller = new VerticalArmPIDController(Kp_default, Ki_default, Kd_default, Kf_default, talon, talon);
         controller.setAbsoluteTolerance(ANGLE_TOLERANCE); // TODO set tolerance in counts
@@ -98,24 +98,26 @@ public class Arm extends TalonPIDSubsystem {
 
     public void moveSetpoint(double speed) {
         double ang = getSetpointDegrees();
-        ang += speed;
+        ang += 0.6 * speed;
         setAngle(ang);
     }
 
     public void setAngle(double angle) {
         angle = Utility.clamp(angle, MINIMUM_ANGLE, MAXIMUM_ANGLE);
-        double counts = toCounts(angle - STARTING_ANGLE); // Measures the difference from the starting angle
+        // double counts = toCounts(angle - STARTING_ANGLE); // Measures the difference
+        // from the starting angle
+        double counts = toCounts(STARTING_ANGLE - angle); // MD change
         controller.setSetpoint(counts);
     }
 
     public double getAngle() {
         int quadraturePosition = talon.getSensorCollection().getQuadraturePosition();
-        return STARTING_ANGLE + toDegrees(quadraturePosition);
+        return STARTING_ANGLE - toDegrees(quadraturePosition);
     }
 
     public double getSetpointDegrees() {
         double counts = controller.getSetpoint();
-        return STARTING_ANGLE + toDegrees(counts);
+        return STARTING_ANGLE - toDegrees(counts);
     }
 
     public double getSetpointCounts() {

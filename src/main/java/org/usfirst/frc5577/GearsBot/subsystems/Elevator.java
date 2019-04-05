@@ -17,8 +17,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class Elevator extends TalonPIDSubsystem {
 
-	public static final double Kp_default = 0.0001;
-	public static final double Ki_default = 0.0;
+	public static final double Kp_default = 0.00017;
+	public static final double Ki_default = 0.00000;
 	public static final double Kd_default = 0.0;
 	// Kf may need to be adjusted if the elevator does not hold steady state
 	public static final double Kf_default = 0.1;
@@ -30,7 +30,7 @@ public class Elevator extends TalonPIDSubsystem {
 
 	// Height units in inches
 	public static final double MINIMUM_HEIGHT = 0.0;
-	public static final double MAXIMUM_HEIGHT = 37.0; // Start with 40 inches, increase from there
+	public static final double MAXIMUM_HEIGHT = 37.0;
 	public static final double HEIGHT_TOLERANCE = 2.0;
 	public static final double STARTING_HEIGHT = 0.0;
 
