@@ -130,10 +130,12 @@ public class OI {
 		lBumperManipulator.whenPressed(new ShiftWrist());
 		lTriggerManipulator.whenPressed(new ShiftHatchPanel());
 
-		xButtonManipulator.whileHeld(new IntakeBall(1.0));
+		rBumperManipulator.whileHeld(new IntakeBall(1.0));
+		// xButtonManipulator.whileHeld(new IntakeBall(1.0)); // ball in
 		// rBumperManipulator.whenPressed(new IntakeBall(1.0));
 
-		bButtonManipulator.whileHeld(new ShootBall(1.0));
+		rTriggerManipulator.whileHeld(new ShootBall(1.0)); // ball out
+		// bButtonManipulator.whileHeld(new ShootBall(1.0)); // ball out
 		// rTriggerManipulator.whenPressed(new ShootBall(1.0));
 	}
 

@@ -50,6 +50,10 @@ public class RobotMap {
 		victorSPX5 = new WPI_VictorSPX(5);
 		victorSPX6 = new WPI_VictorSPX(6);
 		victorSPX7 = new WPI_VictorSPX(7);
+		victorSPX4.configOpenloopRamp(0.1);
+		victorSPX5.configOpenloopRamp(0.1);
+		victorSPX6.configOpenloopRamp(0.1);
+		victorSPX7.configOpenloopRamp(0.1);
 
 		driveTrainLeftMotor = new SpeedControllerGroup(victorSPX4, victorSPX5);
 		driveTrainRightMotor = new SpeedControllerGroup(victorSPX6, victorSPX7);

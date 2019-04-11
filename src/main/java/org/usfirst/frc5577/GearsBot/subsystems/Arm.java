@@ -30,8 +30,8 @@ public class Arm extends TalonPIDSubsystem {
     private double Kf;
 
     // Zero is with the arm straight horizontal
-    public static final double MINIMUM_ANGLE = -30.0;
-    public static final double MAXIMUM_ANGLE = 90.0;
+    public static final double MINIMUM_ANGLE = 2.0;
+    public static final double MAXIMUM_ANGLE = 95.0;
     public static final double ANGLE_TOLERANCE = 2.0;
     public static final double STARTING_ANGLE = 90.0;
 
@@ -98,7 +98,7 @@ public class Arm extends TalonPIDSubsystem {
 
     public void moveSetpoint(double speed) {
         double ang = getSetpointDegrees();
-        ang += 0.6 * speed;
+        ang += 0.8 * speed;
         setAngle(ang);
     }
 
