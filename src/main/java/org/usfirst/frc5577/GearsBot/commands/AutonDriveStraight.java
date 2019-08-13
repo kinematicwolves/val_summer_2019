@@ -8,25 +8,25 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc5577.GearsBot.commands;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
 public class AutonDriveStraight extends CommandGroup {
-    
-    public  AutonDriveStraight() {
+
+    public AutonDriveStraight() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
+        // addSequential(new Command2());
         // these will run in order.
 
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
+        // addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
 
         // A command group will require all of the subsystems that each member
@@ -34,8 +34,13 @@ public class AutonDriveStraight extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	
-        addSequential(new DriveForward(10));
-    }  
-    
+
+        addSequential(new DriveForward(.0005));
+
+        // addSequential(new Turn(30));
+        // addSequential(new DriveForward(.0003));
+        // addSequential(new Turn(-30));
+        // addSequential(new DriveForward(.001));
+    }
+
 }

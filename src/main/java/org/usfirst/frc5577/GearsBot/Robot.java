@@ -21,6 +21,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.usfirst.frc5577.GearsBot.commands.*;
 import org.usfirst.frc5577.GearsBot.subsystems.*;
@@ -93,7 +97,10 @@ public class Robot extends TimedRobot {
     }
 
     public void disabledPeriodic() {
-        Scheduler.getInstance().run();
+        // final TalonSRX elevator = new WPI_TalonSRX(2);
+        // double pos = elevator.getSelectedSensorPosition();
+        // System.out.println(pos);
+        // Scheduler.getInstance().run();
     }
 
     /**
@@ -102,17 +109,13 @@ public class Robot extends TimedRobot {
      * Autonomous options to the SmartDashboard.
      */
     public void autonomousInit() {
-        // autoChooser = new SendableChooser<CommandGroup>();
-        // autoChooser.setDefaultOption("Default program", new AutonDriveStraight());
-        // autoChooser.addOption("Left", new AutonDriveFromLeft());
-        // autoChooser.addOption("Center", new AutonDriveFromCenter());
-        // autoChooser.addOption("Right", new AutonDriveFromRight());
-        // SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-
-        // autonomousCommand = (Command) autoChooser.getSelected();
-        // if (autonomousCommand != null) {
-        // autonomousCommand.start();
-        // }
+        autoChooser = new SendableChooser<CommandGroup>();
+        autoChooser.setDefaultOption("Default program", new AutonDriveStraight());
+        SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+        autonomousCommand = (Command) autoChooser.getSelected();
+        if (autonomousCommand != null) {
+            autonomousCommand.start();
+        }
     }
 
     /**
@@ -138,6 +141,9 @@ public class Robot extends TimedRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        final TalonSRX elevator = new WPI_TalonSRX(2);
+        double pos = elevator.getSelectedSensorPosition();
+        System.out.println(pos);
         Scheduler.getInstance().run();
     }
 

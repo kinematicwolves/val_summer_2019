@@ -39,7 +39,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveTrainForwardWithDistance(double distance) {
-        robotDrive.arcadeDrive(0.25, 0);
+        robotDrive.arcadeDrive(0.25, 1);
     }
 
     public void driveTrainFoward(double speed) {
@@ -68,6 +68,15 @@ public class DriveTrain extends Subsystem {
 
         double speedValue = xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_Y);
         double rotateValue = -xBoxController.getRawAxis(Robot.oi.LEFT_AXIS_X);
+        double maxRotateSpeed = 0.5;
+        double minRotateSpeed = -0.5;
+
+        // if (rotateValue > maxRotateSpeed) {
+        // rotateValue = maxRotateSpeed;
+        // }
+        // if (rotateValue < minRotateSpeed) {
+        // rotateValue = minRotateSpeed;
+        // }
 
         robotDrive.arcadeDrive(speedValue * driveTrainSpeed, rotateValue * driveTrainSpeed, true);
 

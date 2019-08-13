@@ -11,6 +11,7 @@ public class Pneumatics extends Subsystem {
 	private boolean isHighGear = false;
 	private boolean isWristUp = false;
 	private boolean isHatchPanelOut = false;
+	private boolean isClimbExtended = false;
 
 	@Override
 	protected void initDefaultCommand() {
@@ -41,6 +42,14 @@ public class Pneumatics extends Subsystem {
 		}
 	}
 
+	public void extendClimb() {
+		if (isClimbExtended) {
+			retractClimbDown();
+		} else {
+			extendClimbUp();
+		}
+	}
+
 	public boolean isHighGear() {
 		return isHighGear;
 	}
@@ -51,6 +60,10 @@ public class Pneumatics extends Subsystem {
 
 	public boolean isHatchPanelOut() {
 		return isHatchPanelOut;
+	}
+
+	public boolean isClimbExtended() {
+		return isClimbExtended;
 	}
 
 	private void shiftToHighGear() {
@@ -82,6 +95,16 @@ public class Pneumatics extends Subsystem {
 	private void pullPanelIn() {
 		RobotMap.hatchPanelSwitch.set(Value.kReverse);
 		isHatchPanelOut = false;
+	}
+
+	private void extendClimbUp() {
+		RobotMap.climbSwitch.set(Value.kForward);
+		isClimbExtended = true;
+	}
+
+	private void retractClimbDown() {
+		RobotMap.climbSwitch.set(Value.kReverse);
+		isClimbExtended = false;
 	}
 
 	public void stop() {

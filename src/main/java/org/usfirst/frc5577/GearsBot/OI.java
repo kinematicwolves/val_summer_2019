@@ -65,6 +65,8 @@ public class OI {
 	public Button rTriggerManipulator;
 	public Button dPadUp;
 	public Button dPadDown;
+	public Button yButtonDriver;
+	public Button bButtonDriver;
 
 	public static OI instance;
 
@@ -94,11 +96,16 @@ public class OI {
 
 		rBumperDriver = new JoystickButton(driverController, R_BUMPER);
 		buttons.add(rBumperDriver);
+		yButtonDriver = new JoystickButton(driverController, Y_BUTTON);
+		buttons.add(yButtonDriver);
+		bButtonDriver = new JoystickButton(driverController, B_BUTTON);
+		buttons.add(bButtonDriver);
 		// Button dPadUp = new DPadButton(driverController, Direction.UP);
 		// Button dPadLeft = new DPadButton(driverController, Direction.LEFT);
 		// Button dPadRight = new DPadButton(driverController, Direction.RIGHT);
 
 		rBumperDriver.whenPressed(new ShiftGear());
+		// bButtonDriver.whenPressed(new ShiftClimb());
 
 		// Manipulator Controller Setup
 		manipulatorController = new Joystick(1);
@@ -137,6 +144,7 @@ public class OI {
 		rTriggerManipulator.whileHeld(new ShootBall(1.0)); // ball out
 		// bButtonManipulator.whileHeld(new ShootBall(1.0)); // ball out
 		// rTriggerManipulator.whenPressed(new ShootBall(1.0));
+
 	}
 
 	public void close() {

@@ -20,9 +20,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveForward extends Command {
 
-    double speed = 0.75;
-    double distanceInInches = 24;
-    double time = 0.5;
+    double speed = 0.5;
+    double distanceInInches = 2;
+    double time = 0.005;
 
     public DriveForward() {
         requires(Robot.driveTrain);
