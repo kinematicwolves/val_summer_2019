@@ -41,6 +41,7 @@ public class RobotMap {
 	public static DoubleSolenoid wristSwitch;
 	public static DoubleSolenoid hatchPanelSwitch;
 	public static DoubleSolenoid climbSwitch;
+	public static Encoder leftWheelEncoder;
 
 	static void init() {
 
@@ -49,18 +50,21 @@ public class RobotMap {
 		armTalonSRX = new PIDSourceTalon(3); // arm
 		victorSPX4 = new WPI_VictorSPX(4);
 		victorSPX5 = new WPI_VictorSPX(5);
-		// victorSPX6 = new WPI_VictorSPX(6);
+		victorSPX6 = new WPI_VictorSPX(6);
 		victorSPX7 = new WPI_VictorSPX(7);
 		victorSPX4.configOpenloopRamp(0.1);
 		victorSPX5.configOpenloopRamp(0.1);
-		// victorSPX6.configOpenloopRamp(0.1);
+		victorSPX6.configOpenloopRamp(0.1);
 		victorSPX7.configOpenloopRamp(0.1);
 
 		driveTrainLeftMotor = new SpeedControllerGroup(victorSPX4, victorSPX5);
-		// driveTrainRightMotor = new SpeedControllerGroup(victorSPX6, victorSPX7);
-		driveTrainRightMotor = new SpeedControllerGroup(victorSPX7);
+		// driveTrainLeftMotor = new SpeedControllerGroup(victorSPX4);
+		driveTrainRightMotor = new SpeedControllerGroup(victorSPX6, victorSPX7);
+		// driveTrainRightMotor = new SpeedControllerGroup(victorSPX6);
 
-		driveTrainRobotDrive = new DifferentialDrive(driveTrainLeftMotor, driveTrainRightMotor);
+		// SpeedControllerGroup driveTrainRightMotor2 = driveTrainRightMotor;
+		SpeedControllerGroup driveTrainLeftMotor2 = driveTrainLeftMotor;
+		driveTrainRobotDrive = new DifferentialDrive(driveTrainLeftMotor2, driveTrainRightMotor);
 		driveTrainRobotDrive.setSafetyEnabled(true);
 		driveTrainRobotDrive.setExpiration(0.1);
 		driveTrainRobotDrive.setMaxOutput(1.0);
@@ -76,6 +80,11 @@ public class RobotMap {
 		hatchPanelSwitch.set(DoubleSolenoid.Value.kOff);
 		climbSwitch = new DoubleSolenoid(6, 7);
 		climbSwitch.set(DoubleSolenoid.Value.kOff);
+
+		leftWheelEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		leftWheelEncoder.setDistancePerPulse(.147262);
+		leftWheelEncoder.setSamplesToAverage(10);
+		leftWheelEncoder.reset();
 
 	}
 }
