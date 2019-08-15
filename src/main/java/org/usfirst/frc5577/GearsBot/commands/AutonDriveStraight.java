@@ -35,18 +35,9 @@ public class AutonDriveStraight extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
 
-        addSequential(new Turn(1.4));
-        addSequential(new DriveForward(.5, .3));
-        addSequential(new DriveForward(0, 2));
-        addSequential(new Turn(30));
-        addSequential(new DriveForward(0, 2));
-        addSequential(new DriveForward(.5, .5));
+        addSequential(new DriveForward(.0005));
 
-        // addParallel(new DriveForward(.5));
-        // addParallel(new Turn(-1));
-
-        // addSequential(new Turn(4));
-        // addSequential(new DriveForward(.5, 1));
+        // addSequential(new Turn(30));
         // addSequential(new DriveForward(.0003));
         // addSequential(new Turn(-30));
         // addSequential(new DriveForward(.001));

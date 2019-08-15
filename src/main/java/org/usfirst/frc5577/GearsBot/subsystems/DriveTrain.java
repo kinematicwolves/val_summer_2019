@@ -24,8 +24,6 @@ public class DriveTrain extends Subsystem {
     SpeedController rightMotor = RobotMap.driveTrainRightMotor;
     SpeedController leftMotor = RobotMap.driveTrainLeftMotor;
     DifferentialDrive robotDrive = RobotMap.driveTrainRobotDrive;
-    Encoder leftWheelEncoder = RobotMap.leftWheelEncoder;
-    PIDController leftWheelControl = new PIDController(0.1, 0, 0, leftWheelEncoder, leftMotor);
 
     double driveTrainSpeed = 1.0;
 
@@ -41,14 +39,10 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveTrainForwardWithDistance(double distance) {
-        leftWheelEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-        leftWheelControl.enable();
-        leftWheelControl.setSetpoint(distance);
-        robotDrive.arcadeDrive(0.25, 0);
+        robotDrive.arcadeDrive(0.25, 1);
     }
 
     public void driveTrainFoward(double speed) {
-        leftWheelControl.setSetpoint(2);
         robotDrive.arcadeDrive(speed, 0);
     }
 
@@ -110,10 +104,6 @@ public class DriveTrain extends Subsystem {
 
     public void stop() {
         robotDrive.arcadeDrive(0, 0);
-    }
-
-    public double getEncoder() {
-        return leftWheelEncoder.getDistance();
     }
 
 }

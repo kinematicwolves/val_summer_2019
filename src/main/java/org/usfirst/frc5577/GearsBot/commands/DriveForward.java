@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveForward extends Command {
 
     double speed = 0.5;
-    double distanceInInches = .0002;
-    double time = 0.0005;
+    double distanceInInches = 2;
+    double time = 0.005;
 
     public DriveForward() {
         requires(Robot.driveTrain);
@@ -30,7 +30,7 @@ public class DriveForward extends Command {
 
     public DriveForward(double distanceInFeet) {
         this();
-        this.distanceInInches = 4 * distanceInFeet;
+        this.distanceInInches = 12 * distanceInFeet;
     }
 
     public DriveForward(double speed, double time) {
@@ -48,7 +48,6 @@ public class DriveForward extends Command {
     protected void execute() {
         // Robot.driveTrain.driveTrainForwardWithDistance(distance);
         Robot.driveTrain.driveTrainFoward(-speed);
-        System.out.println(Robot.driveTrain.getEncoder());
     }
 
     protected boolean isFinished() {
