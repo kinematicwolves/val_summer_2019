@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *	Run if robot is starting in the middle position.
  *	Gets Game Specific Message to determine location of switches and scale.
  */
-public class AutonDriveFromCenter extends CommandGroup {
+/*public class Auton extends CommandGroup {
     
 	private String gameData;
 	
-	public  AutonDriveFromCenter() {
+	public  Auton(int i) {
     	
     	
     	// Get string of three characters
@@ -54,3 +54,5 @@ public class AutonDriveFromCenter extends CommandGroup {
     	}
     	}  
 }
+*/
+

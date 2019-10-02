@@ -74,8 +74,8 @@ public class Robot extends TimedRobot {
 
         UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
         camera0.setResolution(IMG_WIDTH, IMG_HEIGHT);
-        UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
-        camera0.setResolution(IMG_WIDTH, IMG_HEIGHT);
+       // UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+       // camera0.setResolution(IMG_WIDTH, IMG_HEIGHT);
     }
 
     // ************************************************************************************************************************************************************************
@@ -103,8 +103,8 @@ public class Robot extends TimedRobot {
      */
     public void autonomousInit() {
         // autoChooser = new SendableChooser<CommandGroup>();
-        // autoChooser.setDefaultOption("Default program", new AutonDriveStraight());
-        // autoChooser.addOption("Left", new AutonDriveFromLeft());
+        // autoChooser.setDefaultOption("Default program", new AutonDrive(0));
+        // autoChooser.addOption("Left", new AutonDrive(1));
         // autoChooser.addOption("Center", new AutonDriveFromCenter());
         // autoChooser.addOption("Right", new AutonDriveFromRight());
         // SmartDashboard.putData("Autonomous mode chooser", autoChooser);
@@ -141,11 +141,11 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
-    public void operatorControl() {
-        while (isOperatorControl() && isEnabled()) {
-            Timer.delay(0.005); // wait for a motor update time
-        }
-    }
+    // public void operatorControl() {
+    //     while (isOperatorControl() && isEnabled()) {
+    //         Timer.delay(0.005); // wait for a motor update time
+    //     }
+    // }
 
     @Override
     public void close() {

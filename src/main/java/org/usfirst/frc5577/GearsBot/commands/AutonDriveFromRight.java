@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *	Run if robot is starting in the right position.
  *	Gets Game Specific Message to determine location of switches and scale.
  */
-public class AutonDriveFromRight extends CommandGroup {
+/*public class AutonDriveFromRight extends CommandGroup {
 	
 	private String gameData;
 	
@@ -44,3 +44,4 @@ public class AutonDriveFromRight extends CommandGroup {
 		}
 	}
 }
+*/

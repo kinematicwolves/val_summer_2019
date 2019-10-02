@@ -1,4 +1,4 @@
-package org.usfirst.frc5577.GearsBot.commands;
+/*package org.usfirst.frc5577.GearsBot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -40,3 +40,4 @@ public class AutonDriveFromLeft extends CommandGroup {
 		}
 	}
 }
+*/

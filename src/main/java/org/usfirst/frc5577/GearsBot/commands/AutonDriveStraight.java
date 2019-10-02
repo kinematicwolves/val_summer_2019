@@ -12,10 +12,8 @@
 package org.usfirst.frc5577.GearsBot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
-public class AutonDriveStraight extends CommandGroup {
+
+/*public class AutonDriveStraight extends CommandGroup {
     
     public  AutonDriveStraight() {
         // Add Commands here:
@@ -39,3 +37,4 @@ public class AutonDriveStraight extends CommandGroup {
     }  
     
 }
+*/
